@@ -1,0 +1,23 @@
+ALGORITHM prob2 solution2
+VAR
+    htab : HASH_TABLE<INTEGER,INTEGER>;
+    tab1,tab2 : ARRAY_OF INTEGER;
+    sum, i :INTEGER;
+BEGIN
+    sum:=0;
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        htab.insert(tab1[i], 1);
+    END_FOR
+    FOR i FROM 0 TO tab2.length-1 STEP 1  DO
+    IF (htab.lookup(tab2[i])) THEN
+        htab.set(tab2[i], 2);
+        ELSE
+        htab.insert(tab2[i], 1);
+    END_IF
+    END_FOR
+    FOR i FROM 0 TO tab1.length-1 STEP 1  DO
+        IF (htab.get(tab1[i]=2) THEN
+        sum:= sum+tab1[i] * 2;
+    END_FOR
+    write("the result is: ",sum);
+END

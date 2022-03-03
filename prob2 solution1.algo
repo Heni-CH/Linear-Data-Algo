@@ -1,0 +1,29 @@
+ALGORITHM prob2 solution1
+VAR
+    arr1:ARRAY_OF INTEGER[length];
+    arr2:ARRAY_OF INTEGER[length];
+    overlap:ARRAY_OF INTEGER[length];
+    i,sum, j, count, n ,m:INTEGER;
+    
+BEGIN
+    sum:=0;
+    n:=arr1.length;
+    m:=arr2.length;
+    FOR j FROM 0 TO n + m -1 STEP 1  DO
+        count:=1;
+        IF (j < n) THEN
+            overlap[j]:= arr1[j];
+            ELSE
+            overlap[j]:=arr2[j-n];
+        END_IF
+    FOR i FROM j + 1 TO n + m -1 STEP 1  DO
+        IF (overlap[i]= overlap[j]) THEN
+            count := count + 1;
+        END_IF
+    END_FOR
+    IF (count=2) THEN
+        sum := sum + overlap[j]*2;
+    END_IF
+    END_FOR
+    write("the sum of overlapping elements is: ", sum);
+END
